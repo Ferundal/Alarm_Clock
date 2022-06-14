@@ -5,6 +5,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.Networking;
 
+//Time mode manager
+//Update clock hands position if alarm mode is off
 public class ClockManager : MonoBehaviour
 {
     [SerializeField] private GameObject secondsHand;
@@ -24,7 +26,7 @@ public class ClockManager : MonoBehaviour
         StartCoroutine("StartingCoroutine");
     }
 
-    //Not Proud of code duplication in UpdateClockTime() and StartingCoroutine() but do not found the way to move it to function
+    //Not Proud of code duplication in UpdateClockTime() and StartingCoroutine() but do not know how to move it to functions
     private IEnumerator StartingCoroutine()
     {
         UnityWebRequest webRequest = UnityWebRequest.Get(WORLD_TIME_API);
@@ -53,7 +55,7 @@ public class ClockManager : MonoBehaviour
         SpawnMarks();
     }
 
-    //Not Proud of code duplication in UpdateClockTime() and StartingCoroutine() but do not found the way to move it to function
+    //Not Proud of code duplication in UpdateClockTime() and StartingCoroutine() but do not know how to move it to functions
     private IEnumerator UpdateClockTime()
     {
         ClockTime currentCloackTime = null;
@@ -81,7 +83,8 @@ public class ClockManager : MonoBehaviour
         }
     }
 
-    IEnumerator CountSeconds()
+    //Corutine to change time
+    private IEnumerator CountSeconds()
     {
         while (true)
         {
@@ -97,7 +100,7 @@ public class ClockManager : MonoBehaviour
             }
         }
     }
-
+    //Set clock hands to position according clock time
     private void UpdateClock()
     {
         float secondsAngle = -6.0f * ClockTime.Seconds;
@@ -107,7 +110,7 @@ public class ClockManager : MonoBehaviour
         float hoursAngle = -30.0f * (ClockTime.Hours % 24 + (float)ClockTime.Minutes / 60.0f + (float)ClockTime.Seconds / 3600.0f);
         this.hoursHand.transform.rotation = Quaternion.AngleAxis(hoursAngle, Vector3.forward);
     }
-
+    //Hours marks spawner
     private void SpawnMarks()
     {
         for (int markCounter = 0; markCounter < 12; ++markCounter)

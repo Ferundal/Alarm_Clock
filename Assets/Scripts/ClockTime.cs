@@ -5,9 +5,9 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.Networking;
 
+//Class contain information about clock time, also include parsers for dofferent time sources
 public class ClockTime
 {
-    public static ClockTime CurrentTime { get; private set; }
     private int b_Seconds;
     public int Seconds
     {

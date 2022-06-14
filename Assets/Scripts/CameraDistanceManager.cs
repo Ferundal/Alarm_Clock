@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Track resolution changes and change camera distance. Also change screen center coordinates
 public class CameraDistanceManager : MonoBehaviour
 {
     private int width;
@@ -9,6 +10,7 @@ public class CameraDistanceManager : MonoBehaviour
     private float startDistance;
     Vector3 cameraPosition;
     public Vector2 ScreenCenter { get; private set; }
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -19,16 +21,10 @@ public class CameraDistanceManager : MonoBehaviour
         FixCameraPosition();
         ScreenCenter = new Vector2(Screen.width / 2, Screen.height / 2);
     }
-    void Start()
-    {
-        //Debug.Log("Screen.width: " + Screen.width + "Screen.height :" + Screen.height);
-        //Debug.Log("width: " + width + "height :" + height);
-        //Debug.Log(cameraPosition);
-    }
 
-    // Update is called once per frame
     void Update()
     {
+        //If resolution changed - change camera position and center
         if (width != Screen.width || height != Screen.height)
         {
             Debug.Log("Screen.width: " + Screen.width + "Screen.height :" + Screen.height);

@@ -2,14 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Activates clock hands with rays if alarm mode is on
 public class ActivateObject : MonoBehaviour
 {
+    //We activate clock hands only in Alarm Mode from Alarm Manager
     [SerializeField] private AlarmManger alarmManger;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()

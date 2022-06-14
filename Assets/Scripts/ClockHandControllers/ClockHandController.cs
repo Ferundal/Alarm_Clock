@@ -4,20 +4,13 @@ using UnityEngine;
 
 public abstract class ClockHandController : MonoBehaviour
 {
+    //Base class for all Clock Hands Controllers
     [SerializeField] protected AlarmManger alarmManger;
     [SerializeField] protected AlarmInputFieldManager alarmInputFieldManager;
+    //Clock Hand trace finger touches only if it was activated my ray touch
     [HideInInspector] public bool isActive = false;
+    //We need center of the screen position from CameraDistanceManager, it changed then we rorate screen
     [SerializeField] protected CameraDistanceManager cameraDistanceManager;
-    // Start is called before the first frame update
-
-    private void Awake()
-    {
-
-    }
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()

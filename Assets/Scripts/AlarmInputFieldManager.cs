@@ -10,6 +10,7 @@ public class AlarmInputFieldManager : MonoBehaviour
     [SerializeField] private int maxValue;
     [SerializeField] private TMP_InputField input;
 
+    //Method for non-user changes of field value
     public string InputFieldValue
     {
         get
@@ -39,7 +40,8 @@ public class AlarmInputFieldManager : MonoBehaviour
         }
     }
 
-
+    //Called every time then user change field value
+    //Remove '-' if negative is not allowed
     public void FixInput()
     {
         if (alarmManger.IsAlarmClockMode && isUserInput)

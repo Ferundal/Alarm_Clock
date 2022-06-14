@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class AlarmManger : MonoBehaviour
 {
     [SerializeField] private ClockManager clockManager;
@@ -33,7 +34,10 @@ public class AlarmManger : MonoBehaviour
             b_IsAlarmClockMode = value;
         }
     }
-    // Start is called before the first frame update
+
+    //Function callde by button to switch Clock mode to Alarm mode.
+    //Set alarm input fields active/disactve
+    //Create alarm tim based on current then enter alarm mode first time
     public void SwitchMode()
     {
         if (IsAlarmClockMode)
@@ -60,6 +64,15 @@ public class AlarmManger : MonoBehaviour
             IsAlarmClockMode = true;
         }
     }
+    //Function called every time then user change any field any way.
+    //Reading all fields is overmuch but makes project structure more easy
+    public void ReadImputTimeFields()
+    {
+        AlarmClockTime.Hours = ReadImputTimeField(alarmHoursInputFieldManager);
+        AlarmClockTime.Minutes = ReadImputTimeField(alarmMinutesInputFieldManager);
+        AlarmClockTime.Seconds = ReadImputTimeField(alarmSecondsInputFieldManager);
+        UpdateAlarmClock();
+    }
 
     private int ReadImputTimeField(AlarmInputFieldManager alarmInputFieldManager)
     {
@@ -71,14 +84,8 @@ public class AlarmManger : MonoBehaviour
             return int.Parse(alarmInputFieldManager.InputFieldValue);
         }
     }
-    public void ReadImputTimeFields()
-    {
-        AlarmClockTime.Hours = ReadImputTimeField(alarmHoursInputFieldManager);
-        AlarmClockTime.Minutes = ReadImputTimeField(alarmMinutesInputFieldManager);
-        AlarmClockTime.Seconds = ReadImputTimeField(alarmSecondsInputFieldManager);
-        UpdateAlarmClock();
-    }
-
+    //In alarm mode clock hands position are exactly in there numeric value.
+    //It simplified user input 
     public void UpdateAlarmClock()
     {
         float secondsAngle = -6.0f * AlarmClockTime.Seconds;
